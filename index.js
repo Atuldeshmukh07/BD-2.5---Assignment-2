@@ -171,45 +171,27 @@ let stocks = [
 ];
 
 // Endpoint 1: Get the stocks sorted by pricing.
-//     <------ sorted stocks price low-to-high ------>
-function sortedStocksForAscendingPrice(stock1, stock2) {
-  return stock1.price - stock2.price;
-}
-app.get('/stocks/sort/pricing/low-to-high', (req, res) => {
-  let sortedStocks = stocks.slice();
-  sortedStocks.sort(sortedStocksForAscendingPrice);
-  res.json({ stocks: sortedStocks });
-});
-
-//     <------ sorted stocks price high-to-low ------>
-function sortedStocksFordescendingPrice(stock1, stock2) {
-  return stock2.price - stock1.price;
-}
-app.get('/stocks/sort/pricing/high-to-low', (req, res) => {
-  let sortedStocks = stocks.slice();
-  sortedStocks.sort(sortedStocksFordescendingPrice);
-  res.json({ stocks: sortedStocks });
+app.get('/stocks/sort/pricing', (req, res) => {
+  let pricing = req.query.pricing;
+  let result;
+  if (pricing === 'low-to-high') {
+    result = stocks.sort((stock1, stock2) => stock1.price - stock2.price);
+  } else if (pricing === 'high-to-low') {
+    result = stocks.sort((stock1, stock2) => stock1.price - stock2.price);
+  }
+  res.json({ hotels: result });
 });
 
 // Endpoint 2: Get the stocks sorted based on their Growth.
-//     <------ sorted stocks growth low-to-high ------>
-function sortedStocksForAscendingGrowth(stock1, stock2) {
-  return stock1.growth - stock2.growth;
-}
-app.get('/stocks/sort/growth/low-to-high', (req, res) => {
-  let sortedStocks = stocks.slice();
-  sortedStocks.sort(sortedStocksForAscendingGrowth);
-  res.json({ stocks: sortedStocks });
-});
-
-//     <------ sorted stocks growth high-to-low ------>
-function sortedStocksFordescendingGrowth(stock1, stock2) {
-  return stock2.growth - stock1.growth;
-}
-app.get('/stocks/sort/growth/high-to-low', (req, res) => {
-  let sortedStocks = stocks.slice();
-  sortedStocks.sort(sortedStocksFordescendingGrowth);
-  res.json({ stocks: sortedStocks });
+app.get('/stocks/sort/growth', (req, res) => {
+  let growth = req.query.growth;
+  let result;
+  if (growth === 'low-to-high') {
+    result = stocks.sort((stock1, stock2) => stock1.growth - stock2.growth);
+  } else if (growth === 'high-to-low') {
+    result = stocks.sort((stock1, stock2) => stock1.growth - stock2.growth);
+  }
+  res.json({ hotels: result });
 });
 
 // Endpoint 3: Filter the stocks based on the 2 Stock Exchange (NSE. and BSE).
