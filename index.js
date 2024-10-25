@@ -175,7 +175,7 @@ let stocks = [
 function sortedStocksForAscendingPrice(stock1, stock2) {
   return stock1.price - stock2.price;
 }
-app.get('/stocks/sort/pricing', (req, res) => {
+app.get('/stocks/sort/pricing/low-to-high', (req, res) => {
   let sortedStocks = stocks.slice();
   sortedStocks.sort(sortedStocksForAscendingPrice);
   res.json({ stocks: sortedStocks });
@@ -185,7 +185,7 @@ app.get('/stocks/sort/pricing', (req, res) => {
 function sortedStocksFordescendingPrice(stock1, stock2) {
   return stock2.price - stock1.price;
 }
-app.get('/stocks/sort/pricing', (req, res) => {
+app.get('/stocks/sort/pricing/high-to-low', (req, res) => {
   let sortedStocks = stocks.slice();
   sortedStocks.sort(sortedStocksFordescendingPrice);
   res.json({ stocks: sortedStocks });
@@ -196,7 +196,7 @@ app.get('/stocks/sort/pricing', (req, res) => {
 function sortedStocksForAscendingGrowth(stock1, stock2) {
   return stock1.growth - stock2.growth;
 }
-app.get('/stocks/sort/growth', (req, res) => {
+app.get('/stocks/sort/growth/low-to-high', (req, res) => {
   let sortedStocks = stocks.slice();
   sortedStocks.sort(sortedStocksForAscendingGrowth);
   res.json({ stocks: sortedStocks });
@@ -206,7 +206,7 @@ app.get('/stocks/sort/growth', (req, res) => {
 function sortedStocksFordescendingGrowth(stock1, stock2) {
   return stock2.growth - stock1.growth;
 }
-app.get('/stocks/sort/growth', (req, res) => {
+app.get('/stocks/sort/growth/high-to-low', (req, res) => {
   let sortedStocks = stocks.slice();
   sortedStocks.sort(sortedStocksFordescendingGrowth);
   res.json({ stocks: sortedStocks });
